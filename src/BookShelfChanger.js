@@ -5,7 +5,11 @@ class BookShelfChanger extends Component {
     //TODO: handle event and move element to destination shelf, validate for the same shelf
     render() {
         const changer = this.props.changer
-        console.log((changer))
+        if(changer.currentlyReading)
+          console.log("Existe!")
+        else
+          console.log("No Existe!")
+        console.log(changer.currentlyReading)
         return (
             <div className="book-shelf-changer">
                 <select>

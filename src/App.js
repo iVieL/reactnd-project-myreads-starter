@@ -14,11 +14,11 @@ class BooksApp extends React.Component {
      */
     showSearchPage: true,
     books: [],
-    changer: [
-      {currentlyReading: 'Currently Reading'},
-      {wantToRead: 'Want to Read'},
-      {read: 'Read'}
-    ]
+    changer: {
+      "currentlyReading": 'Currently Reading',
+      "wantToRead": 'Want to Read',
+      "read": 'Read'
+    }
   }
 
   componentDidMount() {
