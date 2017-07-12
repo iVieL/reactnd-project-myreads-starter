@@ -18,8 +18,13 @@ class Book extends Component {
 
   render() {
     const book = this.state.book
-    console.log(book.imageLinks)
-    const url = book.imageLinks.thumbnail
+    const {url} = [book.imageLinks ? book.imageLinks.thumbnail: '']
+    const width = 128
+    const height = 193
+    const title = book.title
+    const authors = book.authors ? book.authors: []
+
+    const changer = this.props.changer
 
       // image = book.imageLinks.thumbnail
       // width = ?
@@ -33,15 +38,17 @@ class Book extends Component {
         <div className="book">
             <div className="book-top">
                 <div className="book-cover" style={ {
-                    width: 128,
-                    height: 193,
+                    width: {width},
+                    height: {height},
                     backgroundImage: `url(${url})`
                   } }>
                   </div>
-                <BookShelfChanger />
+                <BookShelfChanger changer={changer}/>
             </div>
-            <div className="book-title">1776</div>
-            <div className="book-authors">David McCullough</div>
+            <div className="book-title">{title}</div>
+            {authors.map((author) =>
+              <div className="book-authors" key='{author}'>{author}</div>
+            )}
         </div>
         /*
         <div className="book">

@@ -13,7 +13,12 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: true,
-    books: []
+    books: [],
+    changer: [
+      {currentlyReading: 'Currently Reading'},
+      {wantToRead: 'Want to Read'},
+      {read: 'Read'}
+    ]
   }
 
   componentDidMount() {
@@ -24,6 +29,7 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    const changer = this.state.changer
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -35,7 +41,7 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid"/>
             </div>
           </div>
         ) : (
@@ -50,7 +56,7 @@ class BooksApp extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
                       <li>
-                        <Book />
+                        <Book changer={changer}/>
                       </li>
                       <li>
                         <div className="book">
