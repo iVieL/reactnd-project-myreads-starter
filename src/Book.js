@@ -6,9 +6,8 @@ class Book extends Component {
     book: {},
     shelf: ''
   }
-    //TODO: receive correct parameters and fill each div
-    //TODO: track shelf for current book
     //TODO: handle and pass-through for change shelves
+    //TODO: handle the correct image sizes
 
   componentDidMount() {
     if(this.props.book) {
@@ -17,36 +16,28 @@ class Book extends Component {
   }
 
   render() {
+    const shelf = this.state.shelf
     const book = this.state.book
-    const url = book.imageLinks ? book.imageLinks.thumbnail: null
+
+    const myUrl = book.imageLinks ? book.imageLinks.thumbnail: null
     //const isbn13 = book.industryIdentifiers ? book.industryIdentifiers[0].identifier: ''
-    const width = 220
-    const height = 220
+    const width = 220+'px'
+    const height = 220+'px'
     const title = book.title
     const authors = book.authors ? book.authors: []
 
     const changer = this.props.changer
 
-      // image = book.imageLinks.thumbnail
-      // width = ?
-      // size = ?
-      // title = book.title
-      // subtitle = book.subtitle
-      // shelf = book.shelf
-      // authors = book.authors[]
-    console.log(title+' => '+url)
-
     return (
         <div className="book">
             <div className="book-top">
               <div className="book-cover" style={{
-                  width: {width},
-                  height: {height},
-                  backgroundImage: `url(${url})`
-                }}>
-              </div>
+                width: `${width}`,
+                height: `${height}`,
+                backgroundImage: `url(${myUrl})`
+              }}/>
 
-                <BookShelfChanger changer={changer}/>
+                <BookShelfChanger changer={changer} select={shelf}/>
             </div>
             <div className="book-title">{title}</div>
             {authors.map((author) =>

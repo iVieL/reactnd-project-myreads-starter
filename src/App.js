@@ -35,9 +35,6 @@ class BooksApp extends React.Component {
 
   render() {
     const changer = this.state.changer
-    console.log('1. = '+this.filterBooKsByShelf('currentlyReading'))
-    console.log('2. = '+this.filterBooKsByShelf('wantToRead'))
-    console.log('3. = '+this.filterBooKsByShelf('read'))
     return (
       <div className="app">
         {this.state.showSearchPage ? (
