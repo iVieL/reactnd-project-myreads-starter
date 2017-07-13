@@ -27,6 +27,7 @@ class Book extends Component {
     const authors = book.authors ? book.authors: []
 
     const changer = this.props.changer
+    const onShelfChange = this.props.onShelfChange
 
     return (
         <div className="book">
@@ -37,7 +38,7 @@ class Book extends Component {
                 backgroundImage: `url(${myUrl})`
               }}/>
 
-                <BookShelfChanger changer={changer} select={shelf}/>
+                <BookShelfChanger changer={changer} select={shelf} changeBook={onShelfChange} book={book}/>
             </div>
             <div className="book-title">{title}</div>
             {authors.map((author) =>
