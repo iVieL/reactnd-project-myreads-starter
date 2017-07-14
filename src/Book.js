@@ -6,8 +6,7 @@ class Book extends Component {
     book: {},
     shelf: ''
   }
-    //TODO: handle and pass-through for change shelves
-    //TODO: handle the correct image sizes
+  //TODO: handle the correct image sizes
 
   componentDidMount() {
     if(this.props.book) {
