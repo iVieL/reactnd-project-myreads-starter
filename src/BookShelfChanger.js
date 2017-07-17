@@ -4,8 +4,11 @@ class BookShelfChanger extends Component {
 
   changeShelf = (event) =>{
     const value = event.target.value;
-    this.setState({select: value})
     this.props.changeBook(this.props.book, value)
+  }
+
+  componentDidMount() {
+    this.setState({ shelf: this.props.select })
   }
 
   render() {

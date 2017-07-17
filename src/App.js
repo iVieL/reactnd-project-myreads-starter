@@ -33,8 +33,10 @@ class BooksApp extends React.Component {
   }
 
   changeBookShelf = (book, shelf) => {
-    book && shelf && BooksAPI.update(book, shelf).then( () =>
+    book && shelf && BooksAPI.update(book, shelf).then( (s) => {
+      //TODO: udpate returns all books updated, pass as paramter and dont query getAll again
       this.updateBooks()
+    }
     )
   }
 
@@ -43,8 +45,11 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
 
-        <Route exact path="/search" render={() => (
-          <SearchBook changer={changer} onChangeShelf={this.changeBookShelf}/>
+        <Route exact path="/search" render={({history}) => (
+          <SearchBook changer={changer} onChangeShelf={(book, shelf) => {
+            this.changeBookShelf(book, shelf)
+            history.push('/')
+          }}/>
         )}/>
 
         <Route exact path="/" render={() => (

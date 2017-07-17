@@ -3,9 +3,7 @@ import {Link} from 'react-router-dom'
 
 import * as BooksAPI from './BooksAPI'
 
-import Book from './Book'
-
-//TODO: usar Shelf para poner los libros de la busqueda
+import BookList from './BookList'
 
 class SearchBook extends Component {
   state = {
@@ -25,13 +23,12 @@ class SearchBook extends Component {
   render() {
     const { query: myQuery, books } = this.state
     const changer = this.props.changer
-    const shelf = 'none'
     const onChangeShelf = this.props.onChangeShelf
     return (
-      <div className="search-books">
+      <div className='search-books'>
         <div className="search-books-bar">
           <Link className='close-search' to='/'>Close</Link>
-          <div className="search-books-input-wrapper">
+          <div className='search-books-input-wrapper'>
             <input
               value={myQuery}
               type="text"
@@ -41,18 +38,11 @@ class SearchBook extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">
-            {books && books.map && books.map((book) =>
-              <li key={book.id}>
-                <Book
-                  book={book}
-                  changer={changer}
-                  shelf={shelf}
-                  onShelfChange={onChangeShelf}
-                />
-              </li>
-            )}
-          </ol>
+          <BookList
+              books={books}
+              changer={changer}
+              onShelfChange={onChangeShelf}
+          />
         </div>
       </div>
     )
