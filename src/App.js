@@ -26,9 +26,8 @@ class BooksApp extends React.Component {
     })
   }
 
-  updateSearchedBooks(sBooks) {
-    console.log(this.state)
-    sBooks && sBooks.map((sbook) => {
+  updateSearchedBooks = (sBooks) => {
+    Array.isArray(sBooks) && sBooks.map((sbook) => {
       const foundArray = this.state.books.filter((book) =>
         book.id === sbook.id
       )

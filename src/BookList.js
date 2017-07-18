@@ -17,10 +17,10 @@ class BookList extends React.Component {
 
   render() {
     const {books, changer, shelf, onShelfChange} = this.props
-
+    const ensureBooks = Array.isArray(books) ? books: []
     return (
       <ol className="books-grid">
-      {Array.isArray(books) && books.map((book, index) =>
+      {ensureBooks.map((book, index) =>
         <li key={book.id+'-'+index}>
           <Book
             book={book}
