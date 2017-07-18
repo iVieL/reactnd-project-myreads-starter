@@ -22,7 +22,20 @@ class BooksApp extends React.Component {
 
   updateBooks() {
     BooksAPI.getAll().then((books) => {
-      this.setState( {books} )
+      this.setState({books})
+    })
+  }
+
+  updateSearchedBooks(sBooks) {
+    console.log(this.state)
+    sBooks && sBooks.map((sbook) => {
+      const foundArray = this.state.books.filter((book) =>
+        book.id === sbook.id
+      )
+      if(foundArray && foundArray.length >= 1) {
+        sbook.shelf = foundArray[0].shelf
+      }
+      return sbook
     })
   }
 
@@ -33,11 +46,9 @@ class BooksApp extends React.Component {
   }
 
   changeBookShelf = (book, shelf) => {
-    book && shelf && BooksAPI.update(book, shelf).then( (s) => {
-      //TODO: udpate returns all books updated, pass as paramter and dont query getAll again
-      this.updateBooks()
-    }
-    )
+    book && shelf && BooksAPI.update(book, shelf).then( () => {
+        this.updateBooks()
+    })
   }
 
   render() {
@@ -49,7 +60,7 @@ class BooksApp extends React.Component {
           <SearchBook changer={changer} onChangeShelf={(book, shelf) => {
             this.changeBookShelf(book, shelf)
             history.push('/')
-          }}/>
+          }} onSearch={this.updateSearchedBooks}/>
         )}/>
 
         <Route exact path="/" render={() => (
